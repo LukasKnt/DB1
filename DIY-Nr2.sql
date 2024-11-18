@@ -37,3 +37,17 @@ WHERE VorlNr IN (SELECT VorlNr FROM SchopenhauerVorlNr);
 SELECT Name
 FROM Studenten
 WHERE MatrNr IN (SELECT MatrNr FROM StudentenDieAuchVorlesungVonSchopenhauerHoeren) AND Name != 'Schopenhauer';
+
+-- 3. Studenten, die alle Vorlesungen von Schopenhauer hören
+SELECT s.Name
+FROM Studenten s
+WHERE NOT EXISTS ( -- NOT EXISTS: Prüft, ob die Unterabfrage keine Ergebnisse zurückgibt
+    SELECT VorlNr -- Alle Vorlesungen, die Schopenhauer hört ...
+    FROM hoeren h
+    JOIN Studenten schopenhauer ON h.MatrNr = schopenhauer.MatrNr
+    WHERE schopenhauer.Name = 'Schopenhauer'
+    EXCEPT -- EXEPT: (... Minus ...)
+    SELECT VorlNr -- ... Alle Vorlesungen, die ein Student hört
+    FROM hoeren
+    WHERE MatrNr = s.MatrNr
+);
