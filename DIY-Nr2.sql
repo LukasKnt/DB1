@@ -62,4 +62,4 @@ HAVING COUNT(*) >= 2;
 SELECT v.VorlNr, COUNT(p.MatrNr) AS Anzahl
 FROM Vorlesungen v, pruefen p
 GROUP BY v.VorlNr
-WHERE v.VorlNr = p.VorlNr
+WHERE v.VorlNr = p.VorlNr;
