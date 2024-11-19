@@ -51,3 +51,9 @@ WHERE NOT EXISTS ( -- NOT EXISTS: Prüft, ob die Unterabfrage keine Ergebnisse z
     FROM hoeren
     WHERE MatrNr = s.MatrNr
 );
+
+-- 4. Vorlesungen mit mindestens zwei Voraussetzungen
+SELECT Nachfolger
+FROM voraussetzen
+GROUP BY Nachfolger
+HAVING COUNT(*) >= 2;
