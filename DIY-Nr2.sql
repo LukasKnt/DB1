@@ -61,4 +61,5 @@ HAVING COUNT(*) >= 2;
 -- 5. Vorlesungen und Anzahl der Prüfungen DIY
 SELECT v.VorlNr, COUNT(p.MatrNr) AS Anzahl
 FROM Vorlesungen v, pruefen p
+GROUP BY v.VorlNr
 WHERE v.VorlNr = p.VorlNr
