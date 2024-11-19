@@ -58,8 +58,9 @@ FROM voraussetzen
 GROUP BY Nachfolger
 HAVING COUNT(*) >= 2;
 
--- 5. Vorlesungen und Anzahl der Prüfungen DIY
+-- 5. Vorlesungen und Anzahl der Prüfungen
 SELECT v.VorlNr, COUNT(p.MatrNr) AS Anzahl
-FROM Vorlesungen v, pruefen p
+FROM Vorlesungen v
+LEFT JOIN pruefen p ON v.VorlNr = p.VorlNr
 GROUP BY v.VorlNr
-WHERE v.VorlNr = p.VorlNr;
+ORDER BY Anzahl DESC;
