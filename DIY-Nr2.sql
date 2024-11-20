@@ -104,6 +104,7 @@ LEFT JOIN pruefen p ON s.MatrNr = p.MatrNr
 GROUP BY s.MatrNr, s.Name; -- Gruppiert die Ergebnisse nach Studierenden, sodass jede Matrikelnummer und jeder Name nur einmal vorkommen.
 
 -- 10. Namen, die in mindestens zwei verschiedenen Tabellen auftreten
+-- UNION ALL: weniger effizient als INNER JOIN, aber für diese Aufgabe geeignet
 SELECT Name
 FROM (
     SELECT Name FROM Studenten
@@ -114,3 +115,16 @@ FROM (
 ) AS AllNames
 GROUP BY Name
 HAVING COUNT(*) >= 2;
+
+-- 11. Vorlesungen und ihre direkten und indirekten Voraussetzungen
+WITH RECURSIVE VoraussetzungenRekursiv AS (
+    SELECT Vorgaenger, Nachfolger
+    FROM voraussetzen
+    UNION
+    SELECT v.Vorgaenger, vr.Nachfolger
+    FROM voraussetzen v
+    JOIN VoraussetzungenRekursiv vr ON v.Nachfolger = vr.Vorgaenger
+)
+SELECT DISTINCT Nachfolger, Vorgaenger
+FROM VoraussetzungenRekursiv
+ORDER BY Nachfolger, Vorgaenger;
