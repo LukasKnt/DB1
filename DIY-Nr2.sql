@@ -64,3 +64,10 @@ FROM Vorlesungen v
 LEFT JOIN pruefen p ON v.VorlNr = p.VorlNr
 GROUP BY v.VorlNr
 ORDER BY Anzahl DESC;
+
+-- 5 DIY
+SELECT VorlNr, COUNT(MatrNr) AS Anzahl
+FROM pruefen
+WHERE Note IS NULL
+GROUP BY VorlNr
+ORDER BY Anzahl DESC;
