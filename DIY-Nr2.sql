@@ -66,3 +66,31 @@ HAVING COUNT(*) = ( -- Vergleicht die Anzahl der Assistenten mit dem größten W
         GROUP BY Boss
     ) AS Counts
 );
+
+-- 7. Var.1 Studenten, die alle Vorlesungen hören
+SELECT s.Name
+FROM Studenten s
+JOIN hoeren h ON s.MatrNr = h.MatrNr
+GROUP BY s.MatrNr, s.Name -- bis hier: Alle Studenten, die Vorlesungen hören
+HAVING COUNT(DISTINCT h.VorlNr) = ( -- COUNT(DISTINCT): Zählt die Anzahl der Vorlesungen, die ein Student hört (und dann wird verglichen mit =)
+    SELECT COUNT(*) -- Zählt die Gesamtanzahl der Vorlesungen
+    FROM Vorlesungen
+);
+
+-- 7. Var.2 Studenten, die alle Vorlesungen hören
+SELECT s.Name
+FROM Studenten s
+WHERE NOT EXISTS (
+    SELECT VorlNr
+    FROM Vorlesungen
+    EXCEPT
+    SELECT VorlNr
+    FROM hoeren
+    WHERE MatrNr = s.MatrNr
+);
+
+-- 8. Anzahl der Prüfungen mit Note 1 oder 2
+SELECT COUNT(*) AS AnzahlGutePruefungen
+FROM pruefen
+WHERE Note < 3.0; -- Noten wie 2.7, 2.9, ... sind noch als "gut" zu betrachten
+
