@@ -78,13 +78,14 @@ HAVING COUNT(DISTINCT h.VorlNr) = ( -- COUNT(DISTINCT): Zählt die Anzahl der Vo
 );
 
 -- 7. Var.2 Studenten, die alle Vorlesungen hören
+-- Funktioniet wie Aufgabe 2.3 nur das wir alle existierende Vorlesungen anstatt nur die von Schopenhauer betrachten
 SELECT s.Name
 FROM Studenten s
-WHERE NOT EXISTS (
-    SELECT VorlNr
+WHERE NOT EXISTS ( -- NOT EXISTS: Prüft, ob die Unterabfrage keine Ergebnisse zurückgibt
+    SELECT VorlNr -- Alle Vorlesungen, die existieren ...
     FROM Vorlesungen
-    EXCEPT
-    SELECT VorlNr
+    EXCEPT -- EXEPT: (... Minus ...)
+    SELECT VorlNr -- ... Alle Vorlesungen, die ein Student hört
     FROM hoeren
     WHERE MatrNr = s.MatrNr
 );
@@ -94,3 +95,10 @@ SELECT COUNT(*) AS AnzahlGutePruefungen
 FROM pruefen
 WHERE Note < 3.0; -- Noten wie 2.7, 2.9, ... sind noch als "gut" zu betrachten
 
+-- 9. Übersicht der Studierenden mit Durchschnittsnote und Varianz
+SELECT s.MatrNr, s.Name, 
+       AVG(p.Note) AS Durchschnittsnote,
+       VAR_POP(p.Note) AS Varianz
+FROM Studenten s
+LEFT JOIN pruefen p ON s.MatrNr = p.MatrNr
+GROUP BY s.MatrNr, s.Name; -- Gruppiert die Ergebnisse nach Studierenden, sodass jede Matrikelnummer und jeder Name nur einmal vorkommen.
