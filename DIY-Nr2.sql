@@ -102,3 +102,15 @@ SELECT s.MatrNr, s.Name,
 FROM Studenten s
 LEFT JOIN pruefen p ON s.MatrNr = p.MatrNr
 GROUP BY s.MatrNr, s.Name; -- Gruppiert die Ergebnisse nach Studierenden, sodass jede Matrikelnummer und jeder Name nur einmal vorkommen.
+
+-- 10. Namen, die in mindestens zwei verschiedenen Tabellen auftreten
+SELECT Name
+FROM (
+    SELECT Name FROM Studenten
+    UNION ALL
+    SELECT Name FROM Professoren
+    UNION ALL
+    SELECT Name FROM Assistenten
+) AS AllNames
+GROUP BY Name
+HAVING COUNT(*) >= 2;
