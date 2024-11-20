@@ -58,9 +58,9 @@ SELECT p.Name
 FROM Professoren p
 JOIN Assistenten a ON p.PersNr = a.Boss
 GROUP BY p.PersNr, p.Name
-HAVING COUNT(*) = (
-    SELECT MAX(AssistentenAnzahl)
-    FROM (
+HAVING COUNT(*) = ( -- Vergleicht die Anzahl der Assistenten mit dem größten Wert
+    SELECT MAX(AssistentenAnzahl) -- MAX: Größter Wert der Unterabfrage
+    FROM ( -- Unterabfrage: gleicher Boss (Professor PersNr) werden zsmgefasst und gezählt
         SELECT COUNT(*) AS AssistentenAnzahl
         FROM Assistenten
         GROUP BY Boss
