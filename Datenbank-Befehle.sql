@@ -93,7 +93,7 @@ SELECT MatrNr FROM hoeren WHERE VorlNr = (SELECT VorlNr FROM Vorlesungen WHERE T
 SELECT DISTINCT s.Name
 FROM Studenten s
 JOIN hoeren h1 ON s.MatrNr = h1.MatrNr -- jetzt wissen wir welche "namen" welche "Vorlesungen" (VorlNr) hören
-JOIN hoeren h2 ON h1.VorlNr = h2.VorlNr
+JOIN hoeren h2 ON h1.VorlNr = h2.VorlNr -- Alle Studenten, die AKTUELL eine Vorlesung mit Schopenhauer hören
 JOIN Studenten schopenhauer ON h2.MatrNr = schopenhauer.MatrNr
 WHERE schopenhauer.Name = 'Schopenhauer' AND s.Name != 'Schopenhauer';
 

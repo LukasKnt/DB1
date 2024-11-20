@@ -17,7 +17,7 @@ CREATE TABLE Vorlesungen (
     VorlNr INTEGER PRIMARY KEY,
     Titel VARCHAR(100) NOT NULL,
     SWS INTEGER CHECK (SWS > 0),
-    gelesenVon INTEGER NOT NULL,
+    gelesenVon INTEGER NOT NULL
     -- FOREIGN KEY (gelesenVon) REFERENCES Professoren(PersNr) -- jede Vorlesung muss einem bestimmten Dozent zugeordnet sein, der selbst Professor an der Hochschule ist.
 );
 

@@ -18,25 +18,13 @@ Fazit
     Durch den Vergleich eines Fremdschlüssels mit einem Primärschlüssel nutzt du die referenzielle Integrität der Datenbank, um sicherzustellen, dass die Daten konsistent und korrekt sind. Dies ist ein grundlegendes Konzept in relationalen Datenbanken und ermöglicht es dir, Beziehungen zwischen Tabellen effektiv zu nutzen.
 */
 
--- Nr.2.2
-CREATE VIEW SchopenhauerMatrNr AS
-SELECT MatrNr
-FROM Studenten
-WHERE Name = 'Schopenhauer';
-
-CREATE VIEW SchopenhauerVorlNr AS
-SELECT VorlNr
-FROM hoeren
-WHERE MatrNr IN (SELECT MatrNr FROM SchopenhauerMatrNr);
-
-CREATE VIEW StudentenDieAuchVorlesungVonSchopenhauerHoeren AS
-SELECT MatrNr
-FROM hoeren
-WHERE VorlNr IN (SELECT VorlNr FROM SchopenhauerVorlNr);
-
-SELECT Name
-FROM Studenten
-WHERE MatrNr IN (SELECT MatrNr FROM StudentenDieAuchVorlesungVonSchopenhauerHoeren) AND Name != 'Schopenhauer';
+-- 2. Studenten, die mit Schopenhauer eine Vorlesung gehört haben
+SELECT DISTINCT s.Name
+FROM Studenten s
+JOIN hoeren h1 ON s.MatrNr = h1.MatrNr -- jetzt wissen wir welche "namen" welche "Vorlesungen" (VorlNr) hören
+JOIN hoeren h2 ON h1.VorlNr = h2.VorlNr -- Alle Studenten, die AKTUELL eine Vorlesung mit Schopenhauer hören
+JOIN Studenten schopenhauer ON h2.MatrNr = schopenhauer.MatrNr
+WHERE schopenhauer.Name = 'Schopenhauer' AND s.Name != 'Schopenhauer';
 
 -- 3. Studenten, die alle Vorlesungen von Schopenhauer hören
 SELECT s.Name
@@ -65,9 +53,3 @@ LEFT JOIN pruefen p ON v.VorlNr = p.VorlNr
 GROUP BY v.VorlNr
 ORDER BY Anzahl DESC;
 
--- 5 DIY
-SELECT VorlNr, COUNT(MatrNr) AS Anzahl
-FROM pruefen
-WHERE Note IS NULL
-GROUP BY VorlNr
-ORDER BY Anzahl DESC;
