@@ -53,3 +53,16 @@ LEFT JOIN pruefen p ON v.VorlNr = p.VorlNr
 GROUP BY v.VorlNr
 ORDER BY Anzahl DESC;
 
+-- 6. Professor(en) mit den meisten Assistenten
+SELECT p.Name
+FROM Professoren p
+JOIN Assistenten a ON p.PersNr = a.Boss
+GROUP BY p.PersNr, p.Name
+HAVING COUNT(*) = (
+    SELECT MAX(AssistentenAnzahl)
+    FROM (
+        SELECT COUNT(*) AS AssistentenAnzahl
+        FROM Assistenten
+        GROUP BY Boss
+    ) AS Counts
+);
