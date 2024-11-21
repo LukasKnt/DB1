@@ -128,5 +128,3 @@ WITH RECURSIVE VoraussetzungenRekursiv AS (
 SELECT DISTINCT Nachfolger, Vorgaenger
 FROM VoraussetzungenRekursiv
 ORDER BY Nachfolger, Vorgaenger;
-
--- Kommentar 
