@@ -1,4 +1,4 @@
-```markdown
+
 # SQL-Abfragen und ihre Erklärungen
 
 ## 1. Studenten, die die Vorlesung "Ethik" hören
