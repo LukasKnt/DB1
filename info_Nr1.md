@@ -1,6 +1,3 @@
-Hier ist der vollständige Markdown-Code mit Erklärungen zu den DDL-Ausdrücken und den Assoziationen in der Datei `DIY-Nr1.sql`, den du direkt kopieren und in eine `.md`-Datei einfügen kannst:
-
-```markdown
 # DDL-Ausdrücke und ihre Erklärungen
 
 ## 1. Tabelle: Studenten
@@ -34,6 +31,10 @@ CREATE TABLE Professoren (
 - **Raum**: Raum des Professors.
 - **VVorl**: Vorlesungsnummer, für die der Professor verantwortlich ist. Dieser Wert darf nicht NULL sein und verweist auf die Tabelle `Vorlesungen`.
 
+**INFO:**
+- Fremdschlüssel wird mit `ALTER TABLE` später hinzugefügt, da wir Tabelle Vorlesungen noch nicht erstellt haben!
+- **siehe letzter Eintrag in dieser Datei!**
+
 ---
 
 ## 3. Tabelle: Vorlesungen
@@ -51,6 +52,10 @@ CREATE TABLE Vorlesungen (
 - **Titel**: Titel der Vorlesung, darf nicht NULL sein.
 - **SWS**: Semesterwochenstunden der Vorlesung, müssen größer als 0 sein.
 - **gelesenVon**: Personalnummer des Professors, der die Vorlesung liest. Dieser Wert darf nicht NULL sein und verweist auf die Tabelle `Professoren`.
+
+**INFO:**
+- Fremdschlüssel wird mit `ALTER TABLE` später hinzugefügt, um eine klare Übersicht der gegenseitigen Abhängigkeit der Tabellen `Vorlesungen` und `Professoren` zu gewährleisten! Da die Tabelle `Professoren` bereits erzeugt wurde kann der Fremdschlüssel auch direkt bei Erzeugung der `Vorlesungen` Tabelle mitgegeben werden!
+- **siehe letzter Eintrag in dieser Datei!**
 
 ---
 
@@ -141,6 +146,3 @@ FOREIGN KEY (gelesenVon) REFERENCES Professoren(PersNr);
 **Erklärung:**
 - **fk_professoren_vv**: Fügt eine Fremdschlüsseleinschränkung hinzu, die sicherstellt, dass die Vorlesungsnummer `VVorl` in der Tabelle `Professoren` auf eine existierende Vorlesungsnummer in der Tabelle `Vorlesungen` verweist.
 - **vorlesungen_gelesenvon_fkey**: Fügt eine Fremdschlüsseleinschränkung hinzu, die sicherstellt, dass die Personalnummer `gelesenVon` in der Tabelle `Vorlesungen` auf eine existierende Personalnummer in der Tabelle `Professoren` verweist.
-```
-
-Du kannst diesen Markdown-Code in eine Datei mit der Endung `.md` kopieren und speichern.
