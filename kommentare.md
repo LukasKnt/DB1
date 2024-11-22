@@ -98,6 +98,7 @@ HAVING COUNT(*) >= 2;
 **Beziehungen:**
 - **Primärschlüssel/Fremdschlüssel:** voraussetzen.Vorgaenger und voraussetzen.Nachfolger verweisen auf Vorlesungen.VorlNr.
 
+https://youtu.be/feZwQ8LD7YI?si=If6mXAZcfOZ-QM4l
 ---
 
 ## 5. Vorlesungen und Anzahl der Prüfungen
