@@ -93,7 +93,7 @@ HAVING COUNT(*) >= 2;
 1. **GROUP BY Nachfolger:**
    Gruppiert die Ergebnisse nach der Nachfolger-Vorlesung.
 
-2. **HAVING COUNT(*) >= 2:**
+2. **HAVING COUNT(\*) >= 2:**
    Filtert die Gruppen, um nur die Nachfolger-Vorlesungen zu behalten, die mindestens zwei Voraussetzungen haben.
 
 **Beziehungen:**
@@ -149,7 +149,14 @@ HAVING COUNT(*) = (
 2. **GROUP BY p.PersNr, p.Name:**
    Gruppiert die Ergebnisse nach der Personalnummer und dem Namen des Professors.
 
-3. **HAVING COUNT(*) = (SELECT MAX(AssistentenAnzahl) FROM (SELECT COUNT(*) AS AssistentenAnzahl FROM Assistenten GROUP BY Boss) AS Counts):**
+3. **HAVING COUNT(\*) = (:** Vergleicht die Anzahl der Assistenten vom aktuellen Professor mit dem Wert von den Professoren mit den meisten Assistenten. 
+
+4. **SELECT MAX(AssistentenAnzahl):** Größter Wert der Unterabfrage (Unterpunkt 5).
+
+5. **FROM (SELECT COUNT(\*) AS AssistentenAnzahl FROM Assistenten GROUP BY Boss) AS Counts):**
+   (Erwähnte Unterabfrage aus Unterpunkt 4) Gleicher Boss (Professor PersNr) werden zusammengefasst und gezählt.
+
+6. **Punkt 3-5 zusammengefasst:**
    Filtert die Gruppen, um nur die Professoren mit der maximalen Anzahl an Assistenten zu behalten. Die Unterabfrage zählt die Anzahl der Assistenten für jeden Professor und wählt den höchsten Wert aus.
 
 **Beziehungen:**
