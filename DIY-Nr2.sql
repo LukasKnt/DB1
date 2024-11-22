@@ -67,6 +67,15 @@ HAVING COUNT(*) = ( -- Vergleicht die Anzahl der Assistenten mit dem größten W
     ) AS Counts
 );
 
+-- 6 DIY test
+CREATE VIEW anz_assist AS
+SELECT p.Name, COUNT(*) AS anz
+FROM Professoren p
+JOIN Assistenten a ON p.PersNr = a.Boss
+GROUP BY p.PersNr, p.Name;
+
+SELECT MAX(anz) FROM anz_assist;
+
 -- 7. Var.1 Studenten, die alle Vorlesungen hören
 SELECT s.Name
 FROM Studenten s
