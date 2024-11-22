@@ -183,8 +183,11 @@ HAVING COUNT(DISTINCT h.VorlNr) = (
 2. **GROUP BY s.MatrNr, s.Name:**
    Gruppiert die Ergebnisse nach der Matrikelnummer und dem Namen der Studenten.
 
-3. **HAVING COUNT(DISTINCT h.VorlNr) = (SELECT COUNT(*) FROM Vorlesungen):**
-   Filtert die Gruppen, um nur die Studenten zu behalten, die alle Vorlesungen hören. Die Unterabfrage zählt die Gesamtanzahl der Vorlesungen.
+3. **HAVING COUNT(DISTINCT h.VorlNr) = (:** 
+   Zählt die Anzahl der Vorlesungen, die ein Student hört (und dann wird verglichen mit =).
+
+4. **SELECT COUNT(*) FROM Vorlesungen):**
+   Zählt die Gesamtanzahl der Vorlesungen.
 
 **Beziehungen:**
 - **Primärschlüssel:** Studenten.MatrNr identifiziert eindeutig jeden Studenten.
@@ -289,6 +292,9 @@ HAVING COUNT(*) >= 2;
 
 **Beziehungen:**
 - **Primärschlüssel:** Studenten.Name, Professoren.Name und Assistenten.Name identifizieren eindeutig jeden Eintrag in ihren jeweiligen Tabellen.
+
+**Info:**
+`UNION ALL` weniger effizient als INNER JOIN, aber für diese Aufgabe geeignet!
 
 ---
 
