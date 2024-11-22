@@ -31,7 +31,7 @@ WHERE schopenhauer.Name = 'Schopenhauer' AND s.Name != 'Schopenhauer';
 ```
 **Erklärung:**
 1. **JOIN hoeren h1 ON s.MatrNr = h1.MatrNr:**
-   Verknüpft die Tabelle "Studenten" mit "hoeren" basierend auf der Matrikelnummer, um die Vorlesungen zu erhalten, die jeder Student hört.
+   Verknüpft die Tabelle "Studenten" mit "hoeren" basierend auf der Matrikelnummer, um die Vorlesungen (VorlNr) zu erhalten, die jeder Student hört.
 
 2. **JOIN hoeren h2 ON h1.VorlNr = h2.VorlNr:**
    Verknüpft die Tabelle "hoeren" erneut, um alle Studenten zu finden, die dieselben Vorlesungen hören.
@@ -67,11 +67,14 @@ WHERE NOT EXISTS (
 1. **NOT EXISTS:**
    Überprüft, ob die Unterabfrage keine Ergebnisse zurückgibt, um sicherzustellen, dass der Student alle Vorlesungen von Schopenhauer hört.
 
-2. **Unterabfrage:** `SELECT VorlNr FROM hoeren h JOIN Studenten schopenhauer ON h.MatrNr = schopenhauer.MatrNr WHERE schopenhauer.Name = 'Schopenhauer'`
-   Diese Unterabfrage findet alle Vorlesungsnummern, die Schopenhauer hört.
+2. **Unterabfrage Teil 1:** `SELECT VorlNr FROM hoeren h JOIN Studenten schopenhauer ON h.MatrNr = schopenhauer.MatrNr WHERE schopenhauer.Name = 'Schopenhauer'`
+   Findet alle Vorlesungsnummern, die Schopenhauer hört.
 
-3. **EXCEPT SELECT VorlNr FROM hoeren WHERE MatrNr = s.MatrNr:**
-   Diese Unterabfrage findet alle Vorlesungsnummern, die der aktuelle Student hört, und vergleicht sie mit den Vorlesungen von Schopenhauer.
+3. **Unterabfrage Teil 2:** `EXCEPT`
+   Agiert als MINUS
+
+4. **Unterabfrage Teil 3:** `SELECT VorlNr FROM hoeren WHERE MatrNr = s.MatrNr`
+   Findet alle Vorlesungsnummern, die der aktuelle Student hört.
 
 **Beziehungen:**
 - **Primärschlüssel:** Studenten.MatrNr identifiziert eindeutig jeden Studenten.
@@ -96,7 +99,8 @@ HAVING COUNT(*) >= 2;
 **Beziehungen:**
 - **Primärschlüssel/Fremdschlüssel:** voraussetzen.Vorgaenger und voraussetzen.Nachfolger verweisen auf Vorlesungen.VorlNr.
 
-https://youtu.be/feZwQ8LD7YI?si=If6mXAZcfOZ-QM4l
+**Weitere Quellen:**
+- https://youtu.be/feZwQ8LD7YI?si=If6mXAZcfOZ-QM4l
 ---
 
 ## 5. Vorlesungen und Anzahl der Prüfungen
