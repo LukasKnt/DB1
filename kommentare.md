@@ -1,5 +1,3 @@
-Du kannst das in einem Markdown-Dokument darstellen. Markdown unterstützt sowohl Code-Blöcke als auch formatierte Texte, was es ideal für die Kombination von SQL-Abfragen und erklärenden Kommentaren macht. Hier ist ein Beispiel, wie du das in einer `.md`-Datei (Markdown-Datei) darstellen könntest:
-
 ```markdown
 # SQL-Abfragen und ihre Erklärungen
 
@@ -309,6 +307,5 @@ ORDER BY Nachfolger, Vorgaenger;
 
 **Beziehungen:**
 - **Primärschlüssel/Fremdschlüssel:** voraussetzen.Vorgaenger und voraussetzen.Nachfolger verweisen auf Vorlesungen.VorlNr.
-```
 
-Diese Struktur ermöglicht es dir, die Abfragen und ihre Erklärungen klar und verständlich zu präsentieren. Markdown-Dateien können in verschiedenen Markdown-Editoren oder direkt auf GitHub angezeigt werden.
+
