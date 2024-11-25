@@ -18,6 +18,17 @@ WHERE hoeren.VorlNr = (SELECT Vorlesungen.VorlNr FROM Vorlesungen WHERE Titel = 
 - **Primärschlüssel:** Vorlesungen.VorlNr identifiziert eindeutig jede Vorlesung.
 - **Fremdschlüssel:** hoeren.VorlNr verweist auf Vorlesungen.VorlNr und stellt sicher, dass jede Vorlesungsnummer in "hoeren" gültig ist.
 
+**Ergebnisse:**
+| **matrnr** |
+|:----------:|
+| 28106      |
+| 29120      |
+| 29999      |
+| 29998      |
+| 29997      |
+| 29996      |
+
+
 ---
 
 ## 2. Studenten, die mit Schopenhauer eine Vorlesung gehört haben
@@ -45,6 +56,17 @@ WHERE schopenhauer.Name = 'Schopenhauer' AND s.Name != 'Schopenhauer';
 **Beziehungen:**
 - **Primärschlüssel:** Studenten.MatrNr identifiziert eindeutig jeden Studenten.
 - **Fremdschlüssel:** hoeren.MatrNr verweist auf Studenten.MatrNr und stellt sicher, dass jede Matrikelnummer in "hoeren" gültig ist.
+
+**Ergebnisse:**
+| **name**     |
+|:------------:|
+| Theophrastos |
+| David        |
+| Fichte       |
+| Fabian       |
+| Lukas        |
+| Feuerbach    |
+| Abraham      |
 
 ---
 
@@ -82,6 +104,14 @@ WHERE NOT EXISTS (
 - **Primärschlüssel:** Studenten.MatrNr identifiziert eindeutig jeden Studenten.
 - **Fremdschlüssel:** hoeren.MatrNr verweist auf Studenten.MatrNr und stellt sicher, dass jede Matrikelnummer in "hoeren" gültig ist.
 
+**Ergebnisse:**
+| **name** |
+|:--------:|
+| Lukas    |
+| Fabian   |
+| Abraham  |
+| David    |
+
 ---
 
 ## 4. Vorlesungen mit mindestens zwei Voraussetzungen
@@ -103,6 +133,12 @@ HAVING COUNT(*) >= 2;
 
 **Weitere Quellen:**
 - https://youtu.be/feZwQ8LD7YI?si=If6mXAZcfOZ-QM4l
+
+**Ergebnisse:**
+| **nachfolger** |
+|:--------------:|
+| 5052           |
+
 ---
 
 ## 5. Vorlesungen und Anzahl der Prüfungen
@@ -126,6 +162,20 @@ ORDER BY Anzahl DESC;
 **Beziehungen:**
 - **Primärschlüssel:** Vorlesungen.VorlNr identifiziert eindeutig jede Vorlesung.
 - **Fremdschlüssel:** pruefen.VorlNr verweist auf Vorlesungen.VorlNr und stellt sicher, dass jede Vorlesungsnummer in "pruefen" gültig ist.
+
+**Ergebnisse:**
+| **vorlnr** | **anzahl** |
+|:----------:|:----------:|
+| 5001       | 6          |
+| 5041       | 5          |
+| 4052       | 4          |
+| 5043       | 4          |
+| 4630       | 1          |
+| 5049       | 1          |
+| 5216       | 0          |
+| 5259       | 0          |
+| 5022       | 0          |
+| 5052       | 0          |
 
 ---
 
@@ -165,6 +215,12 @@ HAVING COUNT(*) = (
 - **Primärschlüssel:** Professoren.PersNr identifiziert eindeutig jeden Professor.
 - **Fremdschlüssel:** Assistenten.Boss verweist auf Professoren.PersNr und stellt sicher, dass jede Boss-Nummer in der Tabelle "Assistenten" einem gültigen Professor entspricht.
 
+**Ergebnisse:**
+| **name**   |
+|:----------:|
+| Sokrates   |
+| Kopernikus |
+
 ---
 
 ## 7. Var.1 Studenten, die alle Vorlesungen hören
@@ -195,6 +251,12 @@ HAVING COUNT(DISTINCT h.VorlNr) = (
 - **Primärschlüssel:** Studenten.MatrNr identifiziert eindeutig jeden Studenten.
 - **Fremdschlüssel:** hoeren.MatrNr verweist auf Studenten.MatrNr und stellt sicher, dass jede Matrikelnummer in "hoeren" gültig ist.
 
+**Ergebnisse:**
+| **name** |
+|:--------:|
+| Abraham  |
+| Fabian   |
+
 ---
 
 ## 7. Var.2 Studenten, die alle Vorlesungen hören
@@ -224,6 +286,12 @@ WHERE NOT EXISTS (
 - **Primärschlüssel:** Studenten.MatrNr identifiziert eindeutig jeden Studenten.
 - **Fremdschlüssel:** hoeren.MatrNr verweist auf Studenten.MatrNr und stellt sicher, dass jede Matrikelnummer in "hoeren" gültig ist.
 
+**Ergebnisse:**
+| **name** |
+|:--------:|
+| Abraham  |
+| Fabian   |
+
 ---
 
 ## 8. Anzahl der Prüfungen mit Note 1 oder 2
@@ -241,6 +309,11 @@ WHERE Note < 3.0;
 
 **Beziehungen:**
 - **Primärschlüssel:** pruefen.MatrNr und pruefen.VorlNr identifizieren eindeutig jede Prüfung.
+
+**Ergebnisse:**
+| **anzahlgutepruefungen** |
+|:------------------------:|
+| 11                       |
 
 ---
 
@@ -266,6 +339,23 @@ GROUP BY s.MatrNr, s.Name;
 **Beziehungen:**
 - **Primärschlüssel:** Studenten.MatrNr identifiziert eindeutig jeden Studenten.
 - **Fremdschlüssel:** pruefen.MatrNr verweist auf Studenten.MatrNr und stellt sicher, dass jede Matrikelnummer in "pruefen" gültig ist.
+
+**Ergebnisse:**
+| **matrnr** | **name**     | **durchschnittsnote** | **varianz** |
+|:----------:|:------------:|:---------------------:|:-----------:|
+| 29998      | Fabian       | 3.50                  | 1.25        |
+| 28106      | Carnap       | 1.00                  | 0.00        |
+| 29120      | Theophrastos | NULL                  | NULL        |
+| 29997      | Abraham      | 2.60                  | 1.84        |
+| 26120      | Fichte       | 3.00                  | 0.00        |
+| 29996      | David        | 2.75                  | 2.19        |
+| 26830      | Aristoxenos  | NULL                  | NULL        |
+| 29999      | Lukas        | 2.75                  | 2.19        |
+| 29555      | Feuerbach    | NULL                  | NULL        |
+| 29995      | Popper       | NULL                  | NULL        |
+| 24002      | Xenokrates   | NULL                  | NULL        |
+| 25403      | Jonas        | 2.00                  | 0.00        |
+| 27550      | Schopenhauer | 2.00                  | 0.00        |
 
 ---
 
@@ -298,6 +388,11 @@ HAVING COUNT(*) >= 2;
 **Info:**
 `UNION ALL` weniger effizient als INNER JOIN, aber für diese Aufgabe geeignet!
 
+**Ergebnisse:**
+| **name** |
+|:--------:|
+| Popper   |
+
 ---
 
 ## 11. Vorlesungen und ihre direkten und indirekten Voraussetzungen
@@ -327,4 +422,18 @@ ORDER BY Nachfolger, Vorgaenger;
 **Beziehungen:**
 - **Primärschlüssel/Fremdschlüssel:** voraussetzen.Vorgaenger und voraussetzen.Nachfolger verweisen auf Vorlesungen.VorlNr.
 
-
+**Ergebnisse:**
+| **nachfolger** | **vorgaenger** |
+|:--------------:|:--------------:|
+| 5041           | 5001           |
+| 5043           | 5001           |
+| 5049           | 5001           |
+| 5052           | 5001           |
+| 5052           | 5041           |
+| 5052           | 5043           |
+| 5216           | 5001           |
+| 5216           | 5041           |
+| 5259           | 5001           |
+| 5259           | 5041           |
+| 5259           | 5043           |
+| 5259           | 5052           |
