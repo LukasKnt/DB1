@@ -234,28 +234,28 @@ VALUES (29997, 4630);
 
 -- David hoert fast alle Vorlesungen
 INSERT INTO hoeren(MatrNr, VorlNr)
-VALUES (29997, 5001);
+VALUES (29996, 5001);
 
 INSERT INTO hoeren(MatrNr, VorlNr)
-VALUES (29997, 4052);
+VALUES (29996, 4052);
 
 INSERT INTO hoeren(MatrNr, VorlNr)
-VALUES (29997, 5041);
+VALUES (29996, 5041);
 
 INSERT INTO hoeren(MatrNr, VorlNr)
-VALUES (29997, 5043);
+VALUES (29996, 5043);
 
 INSERT INTO hoeren(MatrNr, VorlNr)
-VALUES (29997, 5049);
+VALUES (29996, 5049);
 
 INSERT INTO hoeren(MatrNr, VorlNr)
-VALUES (29997, 5052);
+VALUES (29996, 5052);
 
 INSERT INTO hoeren(MatrNr, VorlNr)
-VALUES (29997, 5022);
+VALUES (29996, 5022);
 
 INSERT INTO hoeren(MatrNr, VorlNr)
-VALUES (29997, 4630);
+VALUES (29996, 4630);
  
  
 INSERT INTO voraussetzen(Vorgaenger, Nachfolger) 
