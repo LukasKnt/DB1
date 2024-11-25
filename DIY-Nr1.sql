@@ -38,6 +38,7 @@ CREATE TABLE Assistenten (
 );
 
 /*
+Beziehungstabelle hoeren (hier einmal genauer beschrieben, alle anderen Beziehungen sind in der Markdown-Datei festgehalten)
 Primaerschluessel: Zusammengesetzter Primaerschluessel aus den Spalten MatrNr und VorlNr.
     -> Jede Kombination aus MatrNr und VorlNr ist einzigartig.
         => Ein Student kann eine bestimmte Vorlesung nur einmal hoeren.

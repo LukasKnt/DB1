@@ -61,7 +61,7 @@ WHERE NOT EXISTS (
     SELECT VorlNr
     FROM hoeren
     WHERE MatrNr = s.MatrNr
-);
+) AND s.Name != 'Schopenhauer';
 ```
 **Erklärung:**
 1. **NOT EXISTS:**
@@ -75,6 +75,8 @@ WHERE NOT EXISTS (
 
 4. **Unterabfrage Teil 3:** `SELECT VorlNr FROM hoeren WHERE MatrNr = s.MatrNr`
    Findet alle Vorlesungsnummern, die der aktuelle Student hört.
+
+5. **Ausgabe ohne Schopenhauer:** `AND s.Name != 'Schopenhauer'`.
 
 **Beziehungen:**
 - **Primärschlüssel:** Studenten.MatrNr identifiziert eindeutig jeden Studenten.
@@ -245,8 +247,8 @@ WHERE Note < 3.0;
 ## 9. Übersicht der Studierenden mit Durchschnittsnote und Varianz
 ```sql
 SELECT s.MatrNr, s.Name, 
-       AVG(p.Note) AS Durchschnittsnote,
-       VAR_POP(p.Note) AS Varianz
+       ROUND(AVG(p.Note), 2) AS Durchschnittsnote,
+       ROUND(VAR_POP(p.Note), 2) AS Varianz
 FROM Studenten s
 LEFT JOIN pruefen p ON s.MatrNr = p.MatrNr
 GROUP BY s.MatrNr, s.Name;
@@ -255,8 +257,8 @@ GROUP BY s.MatrNr, s.Name;
 1. **LEFT JOIN pruefen p ON s.MatrNr = p.MatrNr:**
    Verknüpft die Tabelle "Studenten" mit "pruefen" basierend auf der Matrikelnummer, um die Prüfungsnoten zu erhalten.
 
-2. **SELECT s.MatrNr, s.Name, AVG(p.Note) AS Durchschnittsnote, VAR_POP(p.Note) AS Varianz:**
-   Wählt die Matrikelnummer und den Namen der Studenten sowie den Durchschnitt und die Varianz der Prüfungsnoten.
+2. **SELECT s.MatrNr, s.Name, ROUND(AVG(p.Note), 2) AS Durchschnittsnote, ROUND(VAR_POP(p.Note), 2) AS Varianz:**
+   Wählt die Matrikelnummer und den Namen der Studenten sowie den Durchschnitt und die Varianz der Prüfungsnoten. Durchschnitt und Varianz sind auf 2 Nachkommastellen gerundet mittels `ROUND(  ... , 2)`.
 
 3. **GROUP BY s.MatrNr, s.Name:**
    Gruppiert die Ergebnisse nach der Matrikelnummer und dem Namen der Studenten.

@@ -24,7 +24,7 @@ WHERE NOT EXISTS ( -- NOT EXISTS: Prüft, ob die Unterabfrage keine Ergebnisse z
     SELECT VorlNr -- ... Alle Vorlesungen, die ein Student hört
     FROM hoeren
     WHERE MatrNr = s.MatrNr
-);
+) AND s.Name != 'Schopenhauer';
 
 -- 4. Vorlesungen mit mindestens zwei Voraussetzungen
 SELECT Nachfolger
@@ -83,8 +83,8 @@ WHERE Note < 3.0; -- Noten wie 2.7, 2.9, ... sind noch als "gut" zu betrachten
 
 -- 9. Übersicht der Studierenden mit Durchschnittsnote und Varianz
 SELECT s.MatrNr, s.Name, 
-       AVG(p.Note) AS Durchschnittsnote,
-       VAR_POP(p.Note) AS Varianz
+       ROUND(AVG(p.Note), 2) AS Durchschnittsnote,
+       ROUND(VAR_POP(p.Note), 2) AS Varianz
 FROM Studenten s
 LEFT JOIN pruefen p ON s.MatrNr = p.MatrNr
 GROUP BY s.MatrNr, s.Name; -- Gruppiert die Ergebnisse nach Studierenden, sodass jede Matrikelnummer und jeder Name nur einmal vorkommen.

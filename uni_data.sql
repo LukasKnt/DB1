@@ -24,8 +24,22 @@ INSERT INTO Studenten(MatrNr, Name, Semester)
 VALUES (29120, 'Theophrastos', 2); 
  
 INSERT INTO Studenten(MatrNr, Name, Semester) 
-VALUES (29555, 'Feuerbach', 2); 
- 
+VALUES (29555, 'Feuerbach', 2);
+
+INSERT INTO Studenten(MatrNr, Name, Semester) 
+VALUES (29999, 'Lukas', 3);
+
+INSERT INTO Studenten(MatrNr, Name, Semester) 
+VALUES (29998, 'Fabian', 3);
+
+INSERT INTO Studenten(MatrNr, Name, Semester) 
+VALUES (29997, 'Abraham', 3);
+
+INSERT INTO Studenten(MatrNr, Name, Semester) 
+VALUES (29996, 'David', 3);
+
+INSERT INTO Studenten(MatrNr, Name, Semester) 
+VALUES (29995, 'Popper', 6);
 
 
 INSERT INTO Professoren(PersNr, Name, Raum, VVorl) 
@@ -141,8 +155,107 @@ INSERT INTO hoeren(MatrNr, VorlNr)
 VALUES (25403, 5022);  
  
 INSERT INTO hoeren(MatrNr, VorlNr) 
-VALUES (29555, 5001);  
- 
+VALUES (29555, 5001);
+
+-- Lukas hoert die Vorlesungen die auch Schopenhauer hoert + weitere
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29999, 5001);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29999, 4052);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29999, 5041);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29999, 5043);
+
+-- Fabian hoert alle Vorlesungen
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 5001);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 4052);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 5041);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 5043);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 5049);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 5052);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 5216);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 5259);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 5022);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29998, 4630);
+
+-- Abraham hoert alle Vorlesungen
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5001);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 4052);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5041);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5043);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5049);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5052);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5216);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5259);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5022);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 4630);
+
+-- David hoert fast alle Vorlesungen
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5001);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 4052);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5041);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5043);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5049);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5052);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 5022);
+
+INSERT INTO hoeren(MatrNr, VorlNr)
+VALUES (29997, 4630);
  
  
 INSERT INTO voraussetzen(Vorgaenger, Nachfolger) 
@@ -176,6 +289,65 @@ VALUES (25403, 5041, 2125, 2.0);
 
 INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note) 
 VALUES (27550, 4630, 2137, 2.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (26120, 5001, 2137, 3.0);
+
+-- Lukas hat die Vorlesung Grundzuege bestanden
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note) 
+VALUES (29999, 5001, 2126, 1.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29999, 4052, 2125, 2.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29999, 5041, 2125, 3.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29999, 5043, 2127, 5.0);
+
+
+-- Fabian
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29998, 5001, 2126, 3.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29998, 4052, 2125, 5.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29998, 5041, 2125, 4.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29998, 5043, 2127, 2.0);
+
+-- Abraham
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29997, 5001, 2126, 3.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29997, 4052, 2125, 1.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29997, 5041, 2125, 2.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29997, 5043, 2127, 2.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29997, 5049, 2125, 5.0);
+
+-- David
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29996, 5001, 2126, 3.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29996, 4052, 2125, 1.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29996, 5041, 2125, 2.0);
+
+INSERT INTO pruefen(MatrNr, VorlNr, PersNr, Note)
+VALUES (29996, 5043, 2127, 5.0);
 
 
 ALTER TABLE Vorlesungen
