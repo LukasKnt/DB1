@@ -151,7 +151,7 @@ ORDER BY Anzahl DESC;
 ```
 **Erklärung:**
 1. **LEFT JOIN pruefen p ON v.VorlNr = p.VorlNr:**
-   Verknüpft die Tabelle "Vorlesungen" mit "pruefen" basierend auf der Vorlesungsnummer, um die Prüfungen zu zählen.
+   Verknüpft die Tabelle "Vorlesungen" mit "pruefen" basierend auf der Vorlesungsnummer, um die Prüfungen zu zählen (`LEFT JOIN` um definitiv alle Vorlesungen zu berücksichtigen).
 
 2. **GROUP BY v.VorlNr:**
    Gruppiert die Ergebnisse nach der Vorlesungsnummer.
